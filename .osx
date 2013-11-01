@@ -106,6 +106,11 @@ systemsetup -setrestartfreeze on
 # # Disable Notification Center and remove the menu bar icon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
 
+
+# # Remove bouncing effects for icons on dock
+defaults write com.apple.dock no-bouncing -bool TRUE
+killall Dock
+
 # ###############################################################################
 # # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 # ###############################################################################
@@ -456,6 +461,9 @@ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # # Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
 # defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\\U21a9"
+defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
+defaults write com.apple.mail NSUserKeyEquivalents '{"Send" = "@$D";}'
+defaults write com.apple.mail NSUserKeyEquivalents '{"Send" = "@\\U21a9";}'
 
 # ###############################################################################
 # # Spotlight                                                                   #
